@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+.logo{
+width: 50px;
+height: 50px;
+}
+
+
+.searchbar{
+  padding-top:30px ;
+}
+
+
+*{
+    box-sizing: border-box;
+}
+
+:root{
+    --primary-color:#ffffff;
+    --secondary-color: #1b0402;
+    --third-color:#F9F7C9;
+}
+
+body{
+    background-color: var(--primary-color);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+main{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  background-color: #80BCBD;
+  
+}
+
+.movie{
+  width: 300px;
+  margin: 1rem;
+  border: 1px solid red;
+  padding: 2rem;
+  background-color: var(--third-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.movie .poster {
+  position: relative;
+}
+
+.movie img {
+  width: 100%;
+  display: block;
+}
+
+.movie-info{
+  color: #7E2553;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.movie-info h3 {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.movie-info span{
+  padding:0.3rem;
+  border: 2px solid blue;
+  border-radius: 10%;
+  color: #fff;
+}
+
+/* Watchlist heart, pinned to the poster above the sliding overview. */
+.watch-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 3;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.watch-btn:hover { transform: scale(1.12); }
+.watch-btn.saved { background: #FF006E; }
+.watch-btn:disabled { opacity: 0.6; cursor: wait; }
+
+/* Rating row stays clickable while the overview is slid up. */
+.movie-actions {
+  position: relative;
+  z-index: 2;
+  background-color: var(--third-color);
+  padding-top: 0.25rem;
+}
+
+.stars {
+  display: flex;
+  gap: 4px;
+}
+
+.star {
+  color: #c9c4a0;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.star:hover { transform: scale(1.15); }
+.star.filled { color: #FFBE0B; }
+
+.overview{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: white;
+  padding: 1rem;
+  max-height: 100%;
+  overflow-y: auto;
+  transform: translateY(101%);
+  transition: transform 0.3s ease-in;
+}
+
+.movie:hover .overview{
+  transform: translateY(0);
+}
+
+#view-title {
+  text-align: center;
+  padding: 1.5rem 1rem 0.5rem;
+  margin: 0;
+  color: var(--secondary-color);
+  font-weight: 700;
+}
+
+.status {
+  width: 100%;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: var(--secondary-color);
+  font-weight: 400;
+}
+
+.nav-link.active {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.green{
+  background-color: green;
+}
+
+.orange{
+ 
+  background-color: orange;
+}
+
+.red{
+  background-color: red;
+}
+
+#tags{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: limegreen;
+}
+
+.tag{
+  background-color:#4831D4;
+  color: white;
+  border-radius: 50px;
+  padding: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 10px;
+}
+
+.tag.highlight{
+  background-color: red;
+}

@@ -65,8 +65,9 @@ node_modules/
 # dotenv environment variables file
 .env
 
-# Generated from .env by scripts/generate-env.js - never commit
+# Generated from .env by scripts/generate-env.js
 public/js/env.js
+.firebaserc
 
 # dataconnect generated files
 .dataconnect

@@ -65,12 +65,11 @@ node_modules/
 # dotenv environment variables file
 .env
 
-# Generated from .env by scripts/generate-env.js
-public/js/env.js
+# Firebase project alias (holds the project id)
 .firebaserc
+
+# Vite build output
+dist/
 
 # dataconnect generated files
 .dataconnect
-
-# Local build scripts
-scripts/

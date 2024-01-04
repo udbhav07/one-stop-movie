@@ -5,13 +5,12 @@ and Firebase. Users sign in, browse what's trending, filter by genre, search,
 save films to a watchlist, rate them, and get recommendations seeded from what
 they've rated and saved.
 
-No build step and no dependencies — plain ES modules, with the Firebase SDK
-loaded from a CDN.
+Plain ES modules built with Vite, with the Firebase SDK loaded from a CDN.
 
 ## Structure
 
 ```
-public/                  deployed to Firebase Hosting
+public/                  source pages, built into dist/
 ├── index.html           login / register
 ├── homepage.html        the app
 ├── 404.html
@@ -20,14 +19,13 @@ public/                  deployed to Firebase Hosting
 │   ├── auth.css
 │   └── homepage.css
 └── js/
-    ├── env.js           generated from .env — gitignored
     ├── firebase.js      SDK init, exports auth + database
     ├── auth.js          register, login, validation, redirect
     └── homepage.js      watchlist, ratings, trending, recommendations, search
 
-scripts/generate-env.js  writes public/js/env.js and .firebaserc from .env
+vite.config.js           build config, exposes .env to import.meta.env
 database.rules.json      per-user access rules
-firebase.json            hosting + database config
+firebase.json            database rules config
 ```
 
 ## Setup
@@ -43,26 +41,32 @@ Locally:
 
 ```bash
 cp .env.example .env     # paste the config values in
-node scripts/generate-env.js
+npm install
 ```
 
-The site reads `public/js/env.js`, which that script generates. It's gitignored,
-so a fresh clone must run the script before the app will load.
+The code reads the values through `import.meta.env`; `.env` is gitignored.
 
 ## Run
 
 ```bash
-firebase serve           # http://localhost:5000
+npm run dev              # http://localhost:5173
 ```
 
 ## Deploy
 
+Hosted on Cloudflare Pages:
+
+- Build command: `npm run build`
+- Build output directory: `dist`
+- Environment variables: the same names as in `.env.example`
+
+Database rules still go to Firebase:
+
 ```bash
-firebase deploy --only database,hosting
+firebase deploy --only database
 ```
 
-`--only database` pushes `database.rules.json`. Skip it and the rules on the
-server stay whatever they were.
+Skip that and the rules on the server stay whatever they were.
 
 ## Data model
 
@@ -79,10 +83,8 @@ user can only reach their own subtree. Ratings are validated to 1–5 server-sid
 Watchlist entries store a snapshot of the movie so the list renders without
 re-querying TMDB.
 
-## A note on keys
+## Keys
 
-The Firebase web config and the TMDB key both ship to the browser — that's
-unavoidable in a client-only app, and the Firebase values are public by design.
-They live in `.env` to keep the repo clean and make swapping projects a
-one-liner, not to hide them. Actual protection comes from the database rules
-above and from restricting the API keys in the Google Cloud console.
+All keys live in `.env` (or the host's environment variables) and are never
+committed. Restrict the Firebase API key to your domain in the Google Cloud
+console.

@@ -1,10 +1,9 @@
 import { auth, database } from './firebase.js';
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 import { ref, get, set, remove } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
-import { ENV } from './env.js';
 
 // TMDB API config
-const API_KEY = ENV.TMDB_API_KEY;
+const API_KEY = import.meta.env.TMDB_API_KEY;
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const NO_POSTER = 'data:image/svg+xml;utf8,' + encodeURIComponent(

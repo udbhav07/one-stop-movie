@@ -1,19 +1,18 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 import { getDatabase } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
-import { ENV } from './env.js';
+const env = import.meta.env;
 
-// env.js is generated from .env by scripts/generate-env.js and is gitignored.
-// These values are public by design - the SDK ships them to every browser.
+// Values come from .env (or the host's environment variables) at build time.
 // Access control lives in database.rules.json, not here.
 const firebaseConfig = {
-  apiKey: ENV.FIREBASE_API_KEY,
-  authDomain: ENV.FIREBASE_AUTH_DOMAIN,
-  databaseURL: ENV.FIREBASE_DATABASE_URL,
-  projectId: ENV.FIREBASE_PROJECT_ID,
-  storageBucket: ENV.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: ENV.FIREBASE_MESSAGING_SENDER_ID,
-  appId: ENV.FIREBASE_APP_ID
+  apiKey: env.FIREBASE_API_KEY,
+  authDomain: env.FIREBASE_AUTH_DOMAIN,
+  databaseURL: env.FIREBASE_DATABASE_URL,
+  projectId: env.FIREBASE_PROJECT_ID,
+  storageBucket: env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: env.FIREBASE_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);
